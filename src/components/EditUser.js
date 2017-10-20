@@ -33,8 +33,8 @@ class EditUser extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.onSubmit(this.state)
-    console.log("through handleSubmit")
+    this.props.handleClick()
+    this.props.changeStateOnSubmit(this.state)
   }
 
 render(){

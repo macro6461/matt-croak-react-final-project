@@ -3,7 +3,7 @@ import UserData from './usersData'
 import UserList from './components/UserList'
 import styles from './App.css'
 import ShowUser from './components/ShowUser'
-// import { Button } from 'semantic-ui-react'
+
 
 
 
@@ -16,6 +16,20 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    fetch('https://randomuser.me/api/?results=20')
+    .then(response => response.json())
+    .then(json => this.assignUsers(json))
+  }
+
+  assignUsers = (json) => {
+    console.log(json.results)
+    this.setState ({
+      users: json.results
+    })
+  }
+
+
 
   handleUserClick = (element) => {
     let selectedUser = this.state.users.find((user) =>{
@@ -26,29 +40,29 @@ class App extends Component {
     })
   }
 
-    submitForm = (userData) => {
+    changeStateOnSubmit = (newData) => {
       this.setState((prevState) => {
-        users: prevState.users.map((user) => {
-          if (user === userData.selectedUser) {
-            console.log(user)
-            console.log(userData.selectedUser)
-            console.log(userData.user)
-            return user = userData.user
+         return {users: prevState.users.map((user) => {
+          if (user === newData.selectedUser) {
+            return newData.user
           } else {
             return user
           }
-        })
-      }, () => console.log(this.state.users))
-    }
+        }),
+        selectedUser: newData.user
+      }
+    })
+  }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <div className="user-list">
           <UserList handleClick={this.handleUserClick} users={this.state.users}/>
         </div>
         {(this.state.selectedUser)
-          ? <ShowUser selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} onSubmit={this.submitForm}/>
+          ? <ShowUser selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} changeStateOnSubmit={this.changeStateOnSubmit}/>
           : null
         }
       </div>

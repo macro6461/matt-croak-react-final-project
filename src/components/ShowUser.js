@@ -7,14 +7,14 @@ class ShowUser extends React.Component {
     clicked: false
   }
 
-  handleClick = (e) => {
-    e.preventDefault()
+  handleClick = () => {
     this.setState({
       clicked: !this.state.clicked
     })
   }
 
   render(){
+    console.log(this.props)
     return (
       <div className="main">
         {(this.props.selectedUser === "" || this.props.selectedUser === null)
@@ -24,7 +24,7 @@ class ShowUser extends React.Component {
           <button className="edit-user-button" onClick={this.handleClick}>Edit</button>
         {(this.state.clicked)
           ? <div className="edit-div">
-            <EditUser selectedUser={this.props.selectedUser} clicked={this.state.clicked} handleClick={this.handleClick} handleChange={this.props.handleChange} onSubmit={this.props.onSubmit}/>
+            <EditUser selectedUser={this.props.selectedUser} clicked={this.state.clicked} handleClick={this.handleClick} handleChange={this.props.handleChange} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
             </div>
           : null
         }
