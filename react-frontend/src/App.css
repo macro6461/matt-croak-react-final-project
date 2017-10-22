@@ -1,0 +1,129 @@
+.list-user-card{
+  margin: 4%;
+  padding: 2%;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.new-user-form{
+  width: 50%;
+  position: fixed;
+  z-index: 2;
+  left: 30%;
+  top: 10%;
+  background: white;
+  margin: 2%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  padding: 4%;
+}
+
+.list-user-card:hover{
+  transform: scale(1.05);
+  background-color: lightblue;
+  color: grey;
+}
+
+
+
+.user-card img{
+  width: 60%;
+}
+
+.user-card-name{
+  margin: 0;
+  padding: 0;
+}
+
+.edit-div{
+  width: 50%;
+  position: fixed;
+  z-index: 2;
+  left: 30%;
+  top: 10%;
+  background: white;
+  margin: 2%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  padding: 4%;
+}
+
+button{
+  font-size: 2vw;
+}
+
+.edit-div input{
+  font-size: 2vw;
+  margin: 2%;
+}
+.edit-div label{
+  font-size: 2vw;
+  margin: 2%;
+}
+.main-display {
+  display: none;
+}
+.main {
+  margin: 2%;
+  padding: 2%;
+  float: right;
+  width: 70%;
+  height: 80%;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 5px;
+  box-shadow: 10px 10px 5px grey;
+  border-color: silver;
+  animation-name: spin;
+  animation-name: fade;
+  animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+@keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(360deg);}
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.user-list{
+  float: left;
+  width: 20%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
