@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Route} from 'react-router-dom'
 
 class EditUser extends React.Component {
   constructor (props){
@@ -23,23 +24,26 @@ class EditUser extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.handleClick()
+    this.props.handleUserClick(this.state)
     this.props.handleEdit(this.state)
   }
 
+  handleDelete = (event) => {
+    debugger
+    this.props.handleUserDelete(this.state)
+  }
+
 render(){
-  console.log(this.props)
   return(
-    <form className="edit-user-form" onSubmit={this.handleSubmit}>
+
+    <div className="edit-page-form">
+      <img src={this.state.user.picture_url}/>
+    <form className="edit-user-form">
     <label>
-      First Name:
+      Name:
     </label>
-      <input type="text" name="first" value={this.state.user.first} onChange={(event) => this.handleChange(event)}/>
+      <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleChange(event)}/>
     <br/>
-    <label>
-      Last Name:
-      <input type="text" name="last" value={this.state.user.last} onChange={(event) => this.handleChange(event)}/>
-    </label>
     <br/>
     <label>
         Gender:
@@ -60,8 +64,22 @@ render(){
         Picture URL:
       <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleChange(event)}/>
     </label>
-  <input type="submit" value="Save" />
+    <br/>
+    <label>
+        Bio:
+      <input type="text" name="bio" value={this.state.user.bio} onChange={(event) => this.handleChange(event)}/>
+    </label>
+    <br/>
+    <label>
+        Password:
+      <input type="text" name="password" value={this.state.user.password} onChange={(event) => this.handleChange(event)}/>
+    </label>
+    <button className="save-button" type="submit" value="Save" onClick={this.handleSubmit}>Save</button>
+  <br/>
+  <br/>
+    <Link className="delete-button" to="/" onClick={this.handleDelete}>Delete Account</Link>
     </form>
+    </div>
   )
 }
 }

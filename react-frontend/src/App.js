@@ -3,6 +3,11 @@ import UserList from './components/UserList'
 import styles from './App.css'
 import ShowUser from './components/ShowUser'
 import NewUser from './components/NewUser'
+import { Link, Route, withRouter} from 'react-router-dom'
+import Home from './components/Home.js'
+import Nav from './components/Nav.js'
+import SignInUp from './components/SignInUp.js'
+
 
 
 
@@ -12,6 +17,7 @@ class App extends Component {
     super()
     this.state = {
       users: [],
+      currentUser: 'me',
       selectedUser: ''
     }
   }
@@ -31,16 +37,42 @@ class App extends Component {
 
 
   handleUserClick = (element) => {
+    debugger
     let selectedUser = this.state.users.find((user) =>{
-      return (user.first === element)
+      return (user.name === element)
     })
     this.setState({
       selectedUser: selectedUser
     })
   }
 
+  handleUserDelete = (deleteData) => {
+    debugger
+    console.log(deleteData.user)
+    let newState = deleteData.user.state
+    let newCity = deleteData.user.city
+    fetch(`http://localhost:3000/users/${deleteData.user.id}`, {
+      headers: {"Content-Type": "application/json",
+      "Accept":"application/json"},
+      method: "DELETE",
+      body: JSON.stringify({
+        name: deleteData.user.name,
+        gender: deleteData.user.gender,
+        city: newCity, state: newState, picture_url: deleteData.user.picture_url, bio: deleteData.user.bio, password: deleteData.user.password
+      })
+    })
+    .then(this.setState({
+      selectedUser: "",
+      users: this.state.users.filter((user) =>{
+        return user.name != deleteData.user.name
+      })
+    }))
+    this.props.history.push("/")
+  }
+
   changeStateOnNewEdit = (newEditData) => {
-    console.log(newEditData.user)
+    console.log(this.props)
+    debugger
     let newState = newEditData.user.state
     let newCity = newEditData.user.city
     fetch(`http://localhost:3000/users/${newEditData.user.id}`, {
@@ -48,10 +80,9 @@ class App extends Component {
       "Accept":"application/json"},
       method: "PATCH",
       body: JSON.stringify({
-        first: newEditData.user.first,
-        last: newEditData.user.last,
+        name: newEditData.user.name,
         gender: newEditData.user.gender,
-        city: newCity, state: newState, picture_url: newEditData.user.picture_url
+        city: newCity, state: newState, picture_url: newEditData.user.picture_url, bio: newEditData.user.bio, password: newEditData.user.password
       })
     })
       .then(res => res.json())
@@ -66,9 +97,18 @@ class App extends Component {
         selectedUser: newEditData.user
       }
     })
+    this.props.history.push("/")
+  }
+
+  deleteUserOnClick = () => {
+    debugger
+    this.setState({
+      selectedUser: ""
+    })
   }
 
   changeStateOnNewSubmit = (newUserData) => {
+    debugger
     let newState = newUserData.user.state
     let newCity = newUserData.user.city
     fetch('http://localhost:3000/users', {
@@ -76,10 +116,9 @@ class App extends Component {
       "Accept":"application/json"},
       method: "POST",
       body: JSON.stringify({
-        first: newUserData.user.first,
-        last: newUserData.user.last,
+        name: newUserData.user.name,
         gender: newUserData.user.gender,
-        city: newCity, state: newState, picture_url: newUserData.user.picture_url
+        city: newCity, state: newState, picture_url: newUserData.user.picture_url, bio: newUserData.user.bio, password: newUserData.user.password
       })
     })
       .then(res => res.json())
@@ -87,6 +126,7 @@ class App extends Component {
         users: [...this.state.users, newUserData.user],
         selectedUser: newUserData.user
     })
+    this.props.history.push("/")
   }
 
 
@@ -99,24 +139,26 @@ class App extends Component {
             return user
           }
         }),
-        selectedUser: editData.user
+        currentUser: editData.user
       }
     })
+    this.props.history.push("/")
   }
 
   render() {
     return (
       <div>
-        <div className="user-list">
-          <UserList handleClick={this.handleUserClick} users={this.state.users}/>
-        </div>
-        {(this.state.selectedUser)
-          ? <ShowUser selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit}/>
-        : <NewUser selectedUser={this.state.selectedUser}  changeStateOnNewSubmit={this.changeStateOnNewSubmit} />
+        {this.state.currentUser === ""
+          ? <SignInUp selectedUser={this.state.selectedUser} handleAddUser={this.changeStateOnNewSubmit}/>
+          : <div>
+              <Nav selectedUser={this.state.selectedUser} users={this.state.users}   handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>
+            <h3>Welcome {this.state.currentUser.name}!</h3>
+              <Route exact path="/" render={() => <Home selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} handleAddUser={this.changeStateOnNewSubmit} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick}/>}/>
+          </div>
         }
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -6,12 +6,13 @@ class NewUser extends React.Component {
     super()
     this.state = {
       user: {
-          first: "",
-          last: "",
+          name: "",
           gender: "",
           city: "",
           state: "",
-          picture_url: ""
+          picture_url: "",
+          bio: "",
+          password: ""
         },
       clicked: false
     }
@@ -50,23 +51,17 @@ class NewUser extends React.Component {
   handleNewSubmit = (event) => {
     event.preventDefault()
     this.handleNewClick()
-    this.props.changeStateOnNewSubmit(this.state)
+    this.props.info.handleAddUser(this.state)
   }
 
   render(){
-    console.log(this.state)
     return(
       <form className="new-user-form" onSubmit={this.handleNewSubmit}>
         <h2>Create an Account!</h2>
       <label>
-        First Name:
+        Name:
       </label>
-        <input type="text" name="first" value={this.state.user.first} onChange={(event) => this.handleNewChange(event)}/>
-      <br/>
-      <label>
-        Last Name:
-        <input type="text" name="last" value={this.state.user.last} onChange={(event) => this.handleNewChange(event)}/>
-      </label>
+        <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleNewChange(event)}/>
       <br/>
       <label>
           Gender:
@@ -86,6 +81,16 @@ class NewUser extends React.Component {
       <label>
           Picture URL:
         <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
+      </label>
+      <br/>
+      <label>
+          Bio:
+        <input type="text" name="bio" value={this.state.user.bio} onChange={(event) => this.handleNewChange(event)}/>
+      </label>
+      <br/>
+      <label>
+          Password:
+        <input type="text" name="password" value={this.state.user.password} onChange={(event) => this.handleNewChange(event)}/>
       </label>
     <input type="submit" value="Save" />
     </form>
