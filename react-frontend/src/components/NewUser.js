@@ -50,7 +50,6 @@ class NewUser extends React.Component {
 
 
   handleNewSubmit = (event) => {
-    console.log(this.props)
     event.preventDefault()
     this.handleNewClick()
     this.props.info.handleAddUser(this.state)

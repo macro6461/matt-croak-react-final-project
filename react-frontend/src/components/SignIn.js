@@ -24,7 +24,6 @@ class SignIn extends React.Component{
   }
 
   submitCurrentUser = (event) => {
-    console.log(this.props)
     event.preventDefault()
     let thisUser = this.props.info.allUsers.find((user) => {
       return user.name === this.state.currentUser.name && user.password === this.state.currentUser.password

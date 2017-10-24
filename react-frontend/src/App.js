@@ -55,8 +55,6 @@ class App extends Component {
   }
 
   handleUserDelete = (deleteData) => {
-    debugger
-    console.log(deleteData.user)
     let newState = deleteData.user.state
     let newCity = deleteData.user.city
     fetch(`http://localhost:3000/users/${deleteData.user.id}`, {
@@ -72,6 +70,7 @@ class App extends Component {
     })
     .then(this.setState({
       selectedUser: "",
+      currentUser: "",
       users: this.state.users.filter((user) =>{
         return user.name != deleteData.user.name
       })
@@ -80,7 +79,6 @@ class App extends Component {
   }
 
   changeStateOnNewEdit = (newEditData) => {
-    console.log(this.props)
     debugger
     let editedUser = newEditData.user
     let newState = newEditData.user.state
@@ -119,7 +117,6 @@ class App extends Component {
       currentUser: json,
       selectedUser: json
     })
-    console.log(this.state.currentUser)
     this.props.history.push("/")
   }
 
@@ -171,7 +168,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.currentUser)
     return (
       <div>
         {this.state.currentUser === ""

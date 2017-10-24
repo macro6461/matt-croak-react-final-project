@@ -7,6 +7,17 @@
   border-color: grey;
 }
 
+.matched {
+  z-index: 2;
+  position: fixed;
+  left: 40%;
+  top: 40%;
+  background-color: red;
+  color: white;
+  font-size: 5vw;
+
+}
+
 .new-user-form{
   width: 50%;
   position: fixed;

@@ -22,7 +22,6 @@ class Home extends Component {
 
   filterGender = () => {
     let filteredUsers = this.props.users.filter((user) => {
-      console.log(user.gender === this.state.searchTerm)
       return user.gender.toLowerCase() === this.state.searchTerm.toLowerCase()
     })
     this.setState({
@@ -32,14 +31,13 @@ class Home extends Component {
 
 
   render(){
-    console.log(this.props)
     return(
       <div>
         <div className="search-bar">
           <input
             type="text"
             onChange={this.filterOnChange}
-            placeholder={"Search Here..."}
+            placeholder={"gender preference..."}
             value={this.state.searchTerm}
           />
         <button>Search</button>
