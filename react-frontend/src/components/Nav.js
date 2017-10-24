@@ -15,7 +15,11 @@ class Nav extends React.Component {
     return(
       <div>
       <h1 className="ashes">From the Ashes</h1>
-    <h3> Only a pheonix can rise from the ashes...</h3>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <h3 className="only-a-pheonix"> Only a pheonix can rise from the ashes...</h3>
       <Link className="link" to="/profile">Profile</Link>
       <Link className="link" to='/'>Dashboard</Link>
       <Link className="link" to="/" onClick={this.props.signOut}>Sign Out</Link>
