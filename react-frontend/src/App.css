@@ -27,28 +27,79 @@
   text-align: center;
 }
 
-h3{
+.main h3{
+  background-color: lightblue;
   text-align: center;
-  
+  margin-top: 0;
+  margin-bottom: 1%;
+}
+
+h3{
+  border-radius: 10px;
+  padding-top: 1%;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1%;
+}
+
+h4{
+  border-radius: 10px;
+  padding: 1%;
+  background-color: lightblue;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+h2{
+  margin-top: 0;
+  margin-bottom: 1%;
+}
+
+.link{
+  padding: 0.5%;
+  color: black;
+  margin: 4%;
+}
+
+.search-bar{
+  margin-left: 1%;
+}
+
+.search-bar input{
+  border-radius: 10px;
+  padding: 1%;
+  font-size: 1.5vw;
+}
+
+.search-bar button{
+  margin-left: 0.5%;
+  border-radius: 10px;
 }
 
 .edit-page-form{
-  font-size: 2vw;
-  width: 40%;
+  text-align: center;
+  font-size: 1.5vw;
+  width: 35%;
   position: fixed;
   z-index: 2;
-  left: 10%;
-  top: 10%;
+  left: 28%;
+  top: 22%;
   background: white;
   margin: 2%;
   border-style: solid;
-  border-width: 2px;
-  border-color: black;
-  padding: 4%;
+  border-radius: 10px;
+  border-width: 5px;
+  box-shadow: 10px 10px 5px grey;
+  border-color: silver;
+  padding: 2%;
 }
 
 .edit-page-form img{
   width: 40%;
+}
+
+.edit-page-form input{
+  font-size: 1.5vw;
 }
 
 .list-user-card:hover{
@@ -59,7 +110,6 @@ h3{
 
 .delete-button{
   color: red;
-  margin-left: 40%;
   font-size: 1.5vw;
 }
 
@@ -72,7 +122,7 @@ h3{
 }
 
 .user-card img{
-  width: 60%;
+  width: 50%;
 }
 
 .user-card-name{
@@ -110,11 +160,14 @@ button{
   display: none;
 }
 .main {
+  position: fixed;
+  left: 30%;
+  top: 23%;
   margin: 2%;
-  padding: 2%;
-  float: right;
-  width: 70%;
-  height: 80%;
+  padding: 1%;
+  padding-bottom: 4%;
+  width: 40%;
+  height: 500px;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;

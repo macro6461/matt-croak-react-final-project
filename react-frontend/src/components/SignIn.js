@@ -2,6 +2,38 @@ import React from 'react'
 import { Link, Route } from 'react-router-dom'
 
 class SignIn extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      currentUser: {
+          name: "",
+          password: "",
+      },
+      user: ""
+    }
+  }
+
+  handleSignChange = (event, parameter) => {
+    let value = event.target.value
+    let key = event.target.name
+    this.setState({
+      currentUser: {...this.state.currentUser,
+        [key]: value
+      }
+    })
+  }
+
+  submitCurrentUser = (event) => {
+    console.log(this.props)
+    event.preventDefault()
+    let thisUser = this.props.info.allUsers.find((user) => {
+      return user.name === this.state.currentUser.name && user.password === this.state.currentUser.password
+    })
+    this.setState({
+      user: thisUser
+    }, () => this.props.info.setCurrentUser(this.state.user))
+  }
+
 
   render(){
     return(
@@ -11,13 +43,13 @@ class SignIn extends React.Component{
         <label>
           Name:
         </label>
-          <input type="text" name="name" value={"name"} onChange={(event) => this.handleNewChange(event)}/>
+          <input type="text" name="name" value={this.state.currentUser.name} onChange={(event) => this.handleSignChange(event)}/>
         <br/>
         <label>
           Password:
-          <input type="password" name="password" value={"password"} onChange={(event) => this.handleNewChange(event)}/>
+          <input type="password" name="password" value={this.state.currentUser.password} onChange={(event) => this.handleSignChange(event)}/>
         </label>
-        <Link to="/">SignIn</Link>
+        <button onClick={this.submitCurrentUser}>SignIn</button>
       </form>
       </div>
     )

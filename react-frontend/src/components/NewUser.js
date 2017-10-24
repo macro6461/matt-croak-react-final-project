@@ -2,8 +2,8 @@ import React from 'react'
 
 
 class NewUser extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       user: {
           name: "",
@@ -49,6 +49,7 @@ class NewUser extends React.Component {
 
 
   handleNewSubmit = (event) => {
+    console.log(this.props)
     event.preventDefault()
     this.handleNewClick()
     this.props.info.handleAddUser(this.state)

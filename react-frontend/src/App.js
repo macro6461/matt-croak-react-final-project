@@ -17,7 +17,7 @@ class App extends Component {
     super()
     this.state = {
       users: [],
-      currentUser: 'me',
+      currentUser: '',
       selectedUser: ''
     }
   }
@@ -35,11 +35,19 @@ class App extends Component {
   }
 
 
+  signInCurrentUser = (data) => {
+    this.setState ({
+      currentUser: data
+    })
+    this.props.history.push("/")
+
+  }
+
 
   handleUserClick = (element) => {
     debugger
     let selectedUser = this.state.users.find((user) =>{
-      return (user.name === element)
+      return (user.id === element.id)
     })
     this.setState({
       selectedUser: selectedUser
@@ -73,37 +81,50 @@ class App extends Component {
   changeStateOnNewEdit = (newEditData) => {
     console.log(this.props)
     debugger
+    let editedUser = newEditData.user
     let newState = newEditData.user.state
     let newCity = newEditData.user.city
+    //can't find newEditData.user.id
     fetch(`http://localhost:3000/users/${newEditData.user.id}`, {
       headers: {"Content-Type": "application/json",
       "Accept":"application/json"},
       method: "PATCH",
       body: JSON.stringify({
-        name: newEditData.user.name,
-        gender: newEditData.user.gender,
-        city: newCity, state: newState, picture_url: newEditData.user.picture_url, bio: newEditData.user.bio, password: newEditData.user.password
+        name: editedUser.name,
+        gender: editedUser.gender,
+        city: newCity, state: newState, picture_url: editedUser.picture_url, bio: editedUser.bio, password: editedUser.password
       })
     })
       .then(res => res.json())
-      this.setState((prevState) => {
-         return {users: prevState.users.map((user) => {
-          if (user === newEditData.selectedUser) {
-            return newEditData.user
-          } else {
-            return user
-          }
-        }),
-        selectedUser: newEditData.user
-      }
+      .then(this.removeUser(editedUser))
+      .then(json => this.updateEditedState(json))
+  }
+
+  removeUser = (editedUser) => {
+    debugger
+    let newUsers = this.state.users.filter((user) => {
+      return user.id != editedUser.id
     })
+    this.setState({
+      users: newUsers
+    })
+  }
+
+  updateEditedState = (json) => {
+    debugger
+    this.setState({
+      users: [json, ...this.state.users],
+      currentUser: json,
+      selectedUser: json
+    })
+    console.log(this.state.currentUser)
     this.props.history.push("/")
   }
 
   deleteUserOnClick = () => {
     debugger
     this.setState({
-      selectedUser: ""
+      currentUser: ""
     })
   }
 
@@ -124,7 +145,7 @@ class App extends Component {
       .then(res => res.json())
     this.setState({
         users: [...this.state.users, newUserData.user],
-        selectedUser: newUserData.user
+        currentUser: newUserData.user
     })
     this.props.history.push("/")
   }
@@ -132,6 +153,7 @@ class App extends Component {
 
     changeStateOnSubmit = (editData) => {
       this.setState((prevState) => {
+        debugger
          return {users: prevState.users.map((user) => {
           if (user === editData.selectedUser) {
             return editData.user
@@ -146,14 +168,15 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.currentUser)
     return (
       <div>
         {this.state.currentUser === ""
-          ? <SignInUp selectedUser={this.state.selectedUser} handleAddUser={this.changeStateOnNewSubmit}/>
+          ? <SignInUp allUsers={this.state.users} selectedUser={this.state.selectedUser} currentUser={this.state.currentUser} setCurrentUser={this.signInCurrentUser} handleAddUser={this.changeStateOnNewSubmit}/>
           : <div>
-              <Nav selectedUser={this.state.selectedUser} users={this.state.users}   handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>
+              <Nav selectedUser={this.state.selectedUser} users={this.state.users} currentUser={this.state.currentUser}  handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>
             <h3>Welcome {this.state.currentUser.name}!</h3>
-              <Route exact path="/" render={() => <Home selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} handleAddUser={this.changeStateOnNewSubmit} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick}/>}/>
+          <Route exact path="/" render={() => <Home currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} handleAddUser={this.changeStateOnNewSubmit} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick}/>}/>
           </div>
         }
       </div>

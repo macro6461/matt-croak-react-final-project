@@ -32,6 +32,7 @@ class Home extends Component {
 
 
   render(){
+    console.log(this.props)
     return(
       <div>
         <div className="search-bar">
@@ -53,7 +54,7 @@ class Home extends Component {
           </div>
           { this.props.users.length == 0
             ? null
-            : <ShowUser selectedUser={this.props.selectedUser} users={this.props.users} handleChange={this.props.handleChange} changeEdit={this.props.changeStateOnNewEdit} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
+            : <ShowUser selectedUser={this.props.selectedUser} currentUser={this.props.currentUser} users={this.props.users} handleChange={this.props.handleChange} changeEdit={this.props.changeStateOnNewEdit} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
             }
     </div>
   )}

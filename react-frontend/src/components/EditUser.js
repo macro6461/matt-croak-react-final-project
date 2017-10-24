@@ -5,8 +5,7 @@ class EditUser extends React.Component {
   constructor (props){
     super(props)
     this.state = {
-      user: props.selectedUser,
-      selectedUser: props.selectedUser
+      user: this.props.currentUser
     }
   }
 
@@ -24,7 +23,6 @@ class EditUser extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.handleUserClick(this.state)
     this.props.handleEdit(this.state)
   }
 
@@ -34,6 +32,7 @@ class EditUser extends React.Component {
   }
 
 render(){
+  console.log(this.props)
   return(
 
     <div className="edit-page-form">
@@ -43,7 +42,6 @@ render(){
       Name:
     </label>
       <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleChange(event)}/>
-    <br/>
     <br/>
     <label>
         Gender:

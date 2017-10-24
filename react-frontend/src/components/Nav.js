@@ -16,11 +16,10 @@ class Nav extends React.Component {
       <div>
       <h1 className="ashes">From the Ashes</h1>
     <h3> Only a pheonix can rise from the ashes...</h3>
-    <Link to="/profile">Profile</Link>
-      <br/>
-      <Link to='/'>Dashboard</Link>
+      <Link className="link" to="/profile">Profile</Link>
+      <Link className="link" to='/'>Dashboard</Link>
       <Route exact path='/profile' render={(props) => (
-          <EditUser selectedUser={this.props.selectedUser} clicked={this.state.clicked} handleUserClick={this.props.handleUserClick} handleChange={this.props.handleChange} handleEdit={this.props.changeEdit} handleUserDelete={this.props.handleUserDelete}/>
+          <EditUser currentUser={this.props.currentUser} clicked={this.state.clicked} selectedUser={this.props.selectedUser} handleUserClick={this.props.handleUserClick} handleChange={this.props.handleChange} handleEdit={this.props.changeEdit} handleUserDelete={this.props.handleUserDelete}/>
         )}/>
       </div>
   )}

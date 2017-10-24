@@ -22,20 +22,15 @@ class ShowUser extends React.Component {
   }
 
   render(){
+    console.log(this.props)
     return (
       <div className="main">
         <button className="exit-button">❤️ </button>
         {(this.props.selectedUser === "" || this.props.selectedUser === null)
-          ? <User user={this.props.users[0]}/>
+          ? <User user={this.props.currentUser} handleClick={this.handleClick}/>
           : <div>
-            <User user={this.props.selectedUser}/>
-        {(this.state.clicked)
-          ? <div className="edit-div">
-            <EditUser selectedUser={this.props.selectedUser} clicked={this.state.clicked} handleClick={this.handleClick} handleChange={this.props.handleChange} handleEdit={this.props.changeEdit}/>
+            <User user={this.props.selectedUser} handleClick={this.handleClick}/>
             </div>
-          : null
-        }
-          </div>
         }
       </div>
     )

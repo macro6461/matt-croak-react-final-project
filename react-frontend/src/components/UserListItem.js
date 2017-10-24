@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserListItem = (props) => {
   const selectUser = () => {
-    props.handleClick(props.user.name)
+    props.handleClick(props.user)
   }
   //if we tried to pass in arguments to handleClick while it's in the //onClick prop (onClick={props.handleClick(props.user.name.first)})
   //then it will automatically be invoked. We need it to be passed in
