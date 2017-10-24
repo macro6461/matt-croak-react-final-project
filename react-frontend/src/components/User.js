@@ -12,7 +12,7 @@ const User = (props) => {
       <div className="user-card" onClick={selectUser}>
         <br/>
       <img src={props.user.picture_url ? props.user.picture_url : "http://i0.kym-cdn.com/photos/images/original/001/054/924/d3d.png" } alt="user_profile_pic"/>
-        <h2>{props.user.name}</h2>
+      <h2>{props.user.name}, {props.user.age}</h2>
         <h3>{props.user.gender}</h3>
         <h4>{props.user.city}, {props.user.state}</h4>
         <h4>{props.user.bio}</h4>

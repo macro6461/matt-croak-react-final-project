@@ -65,6 +65,7 @@ class App extends Component {
       method: "DELETE",
       body: JSON.stringify({
         name: deleteData.user.name,
+        age: deleteData.user.age,
         gender: deleteData.user.gender,
         city: newCity, state: newState, picture_url: deleteData.user.picture_url, bio: deleteData.user.bio, password: deleteData.user.password
       })
@@ -91,6 +92,7 @@ class App extends Component {
       method: "PATCH",
       body: JSON.stringify({
         name: editedUser.name,
+        age: editedUser.age,
         gender: editedUser.gender,
         city: newCity, state: newState, picture_url: editedUser.picture_url, bio: editedUser.bio, password: editedUser.password
       })
@@ -138,6 +140,7 @@ class App extends Component {
       method: "POST",
       body: JSON.stringify({
         name: newUserData.user.name,
+        age: newUserData.user.age,
         gender: newUserData.user.gender,
         city: newCity, state: newState, picture_url: newUserData.user.picture_url, bio: newUserData.user.bio, password: newUserData.user.password
       })

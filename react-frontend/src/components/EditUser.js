@@ -42,6 +42,10 @@ render(){
       Name:
     </label>
       <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleChange(event)}/>
+      <label>
+        Age:
+      </label>
+        <input type="text" name="name" value={this.state.user.age} onChange={(event) => this.handleChange(event)}/>
     <br/>
     <label>
         Gender:

@@ -12,6 +12,7 @@ class NewUser extends React.Component {
           state: "",
           picture_url: "",
           bio: "",
+          age: "",
           password: ""
         },
       clicked: false
@@ -63,6 +64,11 @@ class NewUser extends React.Component {
         Name:
       </label>
         <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleNewChange(event)}/>
+      <br/>
+      <label>
+        Age:
+      </label>
+        <input type="text" name="age" value={this.state.user.age} onChange={(event) => this.handleNewChange(event)}/>
       <br/>
       <label>
           Gender:

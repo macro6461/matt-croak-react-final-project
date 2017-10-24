@@ -12,7 +12,7 @@ class SignInUp extends React.Component{
         <h1> Sign In Or Sign Up!</h1>
         <Link to="/signin">SignIn</Link>
       <br/>
-    <br/>
+      <br/>
         <Link to="/signup">SignUp</Link>
       <Route exact path='/signin' render={(props) => (
           <SignIn info={this.props}/>
