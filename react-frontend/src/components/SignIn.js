@@ -37,18 +37,21 @@ class SignIn extends React.Component{
   render(){
     return(
       <div>
-        <form className="new-user-form">
+        <form className="user-form">
           <h1> Sign In!</h1>
         <label>
           Name:
         </label>
           <input type="text" name="name" value={this.state.currentUser.name} onChange={(event) => this.handleSignChange(event)}/>
         <br/>
+      <br/>
         <label>
           Password:
           <input type="password" name="password" value={this.state.currentUser.password} onChange={(event) => this.handleSignChange(event)}/>
         </label>
-        <button onClick={this.submitCurrentUser}>SignIn</button>
+        <br/>
+        <br/>
+        <button onClick={this.submitCurrentUser}>Sign In</button>
       </form>
       </div>
     )

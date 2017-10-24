@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       users: [],
       currentUser: '',
-      selectedUser: ''
+      selectedUser: '',
+      mutualMatch: '',
     }
   }
 
@@ -50,7 +51,8 @@ class App extends Component {
       return (user.id === element.id)
     })
     this.setState({
-      selectedUser: selectedUser
+      selectedUser: selectedUser,
+      mutualMatch: ''
     })
   }
 
@@ -127,6 +129,12 @@ class App extends Component {
     })
   }
 
+  signOut = () => {
+    this.setState({
+      currentUser: ""
+    })
+  }
+
   changeStateOnNewSubmit = (newUserData) => {
     debugger
     let newState = newUserData.user.state
@@ -143,11 +151,12 @@ class App extends Component {
       })
     })
       .then(res => res.json())
-    this.setState({
-        users: [...this.state.users, newUserData.user],
-        currentUser: newUserData.user
+      .then(json => {this.setState({
+          users: [...this.state.users, json],
+          currentUser: json
+      })
     })
-    this.props.history.push("/")
+    .then(this.props.history.push("/"))
   }
 
 
@@ -167,15 +176,22 @@ class App extends Component {
     this.props.history.push("/")
   }
 
+  handleMutualMatch = (data) => {
+    debugger
+    this.setState({
+      mutualMatch: data
+    })
+  }
+
   render() {
     return (
       <div>
         {this.state.currentUser === ""
           ? <SignInUp allUsers={this.state.users} selectedUser={this.state.selectedUser} currentUser={this.state.currentUser} setCurrentUser={this.signInCurrentUser} handleAddUser={this.changeStateOnNewSubmit}/>
           : <div>
-              <Nav selectedUser={this.state.selectedUser} users={this.state.users} currentUser={this.state.currentUser}  handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>
+              <Nav signOut={this.signOut} selectedUser={this.state.selectedUser} users={this.state.users} currentUser={this.state.currentUser}  handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>
             <h3>Welcome {this.state.currentUser.name}!</h3>
-          <Route exact path="/" render={() => <Home currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} handleAddUser={this.changeStateOnNewSubmit} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick}/>}/>
+          <Route exact path="/" render={() => <Home handleMutualMatch={this.handleMutualMatch} mutualMatch={this.state.mutualMatch} currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} users={this.state.users} handleChange={this.handleChange} handleAddUser={this.changeStateOnNewSubmit} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick}/>}/>
           </div>
         }
       </div>

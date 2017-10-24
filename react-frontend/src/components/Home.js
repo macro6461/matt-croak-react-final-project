@@ -52,7 +52,7 @@ class Home extends Component {
           </div>
           { this.props.users.length == 0
             ? null
-            : <ShowUser selectedUser={this.props.selectedUser} currentUser={this.props.currentUser} users={this.props.users} handleChange={this.props.handleChange} changeEdit={this.props.changeStateOnNewEdit} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
+            : <ShowUser handleMutualMatch={this.props.handleMutualMatch} mutualMatch={this.props.mutualMatch} selectedUser={this.props.selectedUser} currentUser={this.props.currentUser} users={this.props.users} handleChange={this.props.handleChange} changeEdit={this.props.changeStateOnNewEdit} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
             }
     </div>
   )}

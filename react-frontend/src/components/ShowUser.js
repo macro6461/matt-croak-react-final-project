@@ -8,7 +8,6 @@ class ShowUser extends React.Component {
     clicked: false,
     showClass: true,
     matches: "",
-    mutualMatch: ""
   }
 
   handleClick = () => {
@@ -55,6 +54,7 @@ class ShowUser extends React.Component {
     }
   }
 
+
   checkMatches = (json) => {
     debugger
     let matcher = this.props.users.find((user) => {
@@ -69,22 +69,26 @@ class ShowUser extends React.Component {
       return parseInt(match.matcher_id) === matchee.id && parseInt(match.matchee_id) === matcher.id
     })
     if (finalMatch){
-      this.setState({
-        mutualMatch: finalMatch
-      })
+      debugger
+      this.props.handleMutualMatch(finalMatch)
     } else {
-      console.log("invalid bitch")
+      console.log("invalid")
     }
   }
 
   render(){
+    console.log(this.props)
     return (
       <div className="main">
-        {this.state.mutualMatch === "" || this.state.mutualMatch === null
+        {this.props.mutualMatch === "" || this.props.mutualMatch === null
         ? null
-        :<h1 className="matched">You matched with {this.props.selectedUser.name}</h1>
+        :<div className="heart">
+          <img src="https://images.onlinelabels.com/images/clip-art/nicubunu/nicubunu_Card_symbols_Heart.png"/>
+        <h1 className="matched">You matched with </h1>
+      <h1 className="matched-name">{this.props.selectedUser.name}!</h1>
+        </div>
         }
-        <button className="exit-button" onClick={this.createMatch}>❤️</button>
+        <img className="match-button" src="https://images.onlinelabels.com/images/clip-art/nicubunu/nicubunu_Card_symbols_Heart.png" onClick={this.createMatch}/>
         {(this.props.selectedUser === "" || this.props.selectedUser === null)
           ? <User user={this.props.currentUser} handleClick={this.handleClick}/>
           : <div>

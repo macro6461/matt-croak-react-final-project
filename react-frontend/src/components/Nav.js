@@ -18,6 +18,7 @@ class Nav extends React.Component {
     <h3> Only a pheonix can rise from the ashes...</h3>
       <Link className="link" to="/profile">Profile</Link>
       <Link className="link" to='/'>Dashboard</Link>
+      <Link className="link" to="/" onClick={this.props.signOut}>Sign Out</Link>
       <Route exact path='/profile' render={(props) => (
           <EditUser currentUser={this.props.currentUser} clicked={this.state.clicked} selectedUser={this.props.selectedUser} handleUserClick={this.props.handleUserClick} handleChange={this.props.handleChange} handleEdit={this.props.changeEdit} handleUserDelete={this.props.handleUserDelete}/>
         )}/>

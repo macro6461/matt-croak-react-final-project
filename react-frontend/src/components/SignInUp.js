@@ -7,13 +7,12 @@ import { Link, Route } from 'react-router-dom'
 class SignInUp extends React.Component{
 
   render(){
+    console.log(this.props)
     return(
       <div>
         <h1> Sign In Or Sign Up!</h1>
-        <Link to="/signin">SignIn</Link>
-      <br/>
-      <br/>
-        <Link to="/signup">SignUp</Link>
+      <Link className="link" to="/signin">SignIn</Link>
+    <Link className="link" to="/signup">SignUp</Link>
       <Route exact path='/signin' render={(props) => (
           <SignIn info={this.props}/>
         )}/>
