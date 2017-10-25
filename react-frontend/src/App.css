@@ -12,6 +12,7 @@ body{
 }
 
 .matched {
+  text-align: center;
   position: fixed;
   top: 52%;
   left: 40%;
@@ -19,7 +20,13 @@ body{
   z-index: 3;
   color: white;
   font-size: 3vw;
+  text-shadow: 0.5px 0.5px black;
+}
+
+.user-not-found{
+  color: red;
   text-shadow: 2px 2px black;
+  font-size: 3vw;
 }
 
 .matched-name{
@@ -106,6 +113,18 @@ h2{
   padding: 0.5%;
   color: black;
   margin-left: 20%;
+}
+
+.sign-in-link{
+  padding: 0.5%;
+  color: black;
+  margin-left: 30%;
+}
+
+.sign-up-link{
+  padding: 0.5%;
+  color: black;
+  margin-left: 30%;
 }
 
 .search-bar{

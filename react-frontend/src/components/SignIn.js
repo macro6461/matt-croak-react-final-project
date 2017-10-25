@@ -9,7 +9,8 @@ class SignIn extends React.Component{
           name: "",
           password: "",
       },
-      user: ""
+      user: "",
+      success: true
     }
   }
 
@@ -28,9 +29,15 @@ class SignIn extends React.Component{
     let thisUser = this.props.info.allUsers.find((user) => {
       return user.name === this.state.currentUser.name && user.password === this.state.currentUser.password
     })
-    this.setState({
-      user: thisUser
-    }, () => this.props.info.setCurrentUser(this.state.user))
+    if (thisUser){
+      this.setState({
+        user: thisUser,
+      }, () => this.props.info.setCurrentUser(this.state.user))
+    } else {
+      this.setState({
+        success: false
+      })
+    }
   }
 
 
@@ -38,6 +45,10 @@ class SignIn extends React.Component{
     return(
       <div>
         <form className="user-form">
+          {this.state.success === false
+            ? <h1 className="user-not-found">User not found</h1>
+            : null
+          }
           <h1> Sign In!</h1>
         <label>
           Name:

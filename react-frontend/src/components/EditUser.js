@@ -44,7 +44,7 @@ render(){
       <label>
         Age:
       </label>
-        <input type="text" name="name" value={this.state.user.age} onChange={(event) => this.handleChange(event)}/>
+        <input type="text" name="age" value={this.state.user.age} onChange={(event) => this.handleChange(event)}/>
     <br/>
     <label>
         Gender:

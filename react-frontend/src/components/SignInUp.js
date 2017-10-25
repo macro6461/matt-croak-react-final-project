@@ -11,9 +11,9 @@ class SignInUp extends React.Component{
     return(
       <div>
         <h1> Sign In Or Sign Up!</h1>
-      <Link className="link" to="/signin">SignIn</Link>
-    <Link className="link" to="/signup">SignUp</Link>
-      <Route exact path='/signin' render={(props) => (
+        <Link className="sign-in-link" to="/signin">SignIn</Link>
+        <Link className="sign-up-link" to="/signup">SignUp</Link>
+        <Route exact path='/signin' render={(props) => (
           <SignIn info={this.props}/>
         )}/>
       <Route exact path='/signup' render={(props) => (
