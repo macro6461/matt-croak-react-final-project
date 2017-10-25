@@ -49,8 +49,9 @@ body{
 }
 
 .heart img{
-  display: block;
-  width: 100%;
+  left: 27%;
+  position: fixed;
+  width: 50%;
 }
 
 h1{
@@ -60,7 +61,7 @@ h1{
 .user-form{
   background-color: blue;
   margin-left: 22%;
-  margin-top: 10%;
+  margin-top: 6%;
   width: 50%;
   text-align: center;
   background: white;
@@ -240,7 +241,7 @@ button{
   margin: 2%;
   padding: 1%;
   padding-bottom: 4%;
-  width: 40%;
+  width: 30%;
   height: 500px;
   border-style: solid;
   border-radius: 10px;

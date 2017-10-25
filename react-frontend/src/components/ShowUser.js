@@ -3,6 +3,7 @@ import User from './User'
 import EditUser from './EditUser'
 
 
+
 class ShowUser extends React.Component {
   state ={
     clicked: false,
@@ -83,9 +84,7 @@ class ShowUser extends React.Component {
         {this.props.mutualMatch === "" || this.props.mutualMatch === null
         ? null
         :<div className="heart">
-          <img src="https://images.onlinelabels.com/images/clip-art/nicubunu/nicubunu_Card_symbols_Heart.png"/>
-        <h1 className="matched">You matched with </h1>
-      <h1 className="matched-name">{this.props.selectedUser.name}!</h1>
+          <img src={require('../match_heart.png')}/>
         </div>
         }
         <img className="match-button" src="https://images.onlinelabels.com/images/clip-art/nicubunu/nicubunu_Card_symbols_Heart.png" onClick={this.createMatch}/>

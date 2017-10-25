@@ -16,7 +16,7 @@ class NewUser extends React.Component {
           password: ""
         },
       clicked: false,
-      submitted: false
+      submitted: true
     }
   }
 
@@ -52,8 +52,17 @@ class NewUser extends React.Component {
 
   handleNewSubmit = (event) => {
     event.preventDefault()
-    this.handleNewClick()
-    this.props.info.handleAddUser(this.state)
+    // let values = this.state.values()
+    // if (values.includes("")){
+    //   this.setState({
+    //     submitted: false
+    //   })
+    // }
+    // if (!this.state.submitted){
+    //   console.log("false")
+    // } else {
+      this.handleNewClick()
+      this.props.info.handleAddUser(this.state)
   }
 
   render(){
