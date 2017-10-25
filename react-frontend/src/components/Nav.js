@@ -2,6 +2,7 @@ import React from 'react'
 import EditUser from './EditUser'
 import { Link, Route } from 'react-router-dom'
 import Home from './Home'
+import Banner from './Banner'
 
 class Nav extends React.Component {
   constructor(props){
@@ -14,12 +15,7 @@ class Nav extends React.Component {
   render(){
     return(
       <div>
-      <h1 className="ashes">From the Ashes</h1>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <h3 className="only-a-pheonix"> Only a pheonix can rise from the ashes...</h3>
+        <Banner />
       <Link className="link" to="/profile">Profile</Link>
       <Link className="link" to='/'>Dashboard</Link>
       <Link className="link" to="/" onClick={this.props.signOut}>Sign Out</Link>

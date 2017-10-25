@@ -15,31 +15,32 @@ class NewUser extends React.Component {
           age: "",
           password: ""
         },
-      clicked: false
+      clicked: false,
+      submitted: false
     }
   }
 
   handleNewChange = (event, parameter) => {
     let value = event.target.value
     let key = event.target.name
-    this.setState((prevState) => {
-      if (parameter){
-        return {
-          user: {...prevState.user,
-            [parameter]: {...prevState.user[parameter],
+      this.setState((prevState) => {
+        if (parameter){
+          return {
+            user: {...prevState.user,
+              [parameter]: {...prevState.user[parameter],
+                [key]: value
+              }
+            }
+          }
+        } else {
+          return {
+            user: {...prevState.user,
               [key]: value
             }
-        }
-      }
-    } else {
-        return {
-          user: {...prevState.user,
-            [key]: value
           }
         }
-      }
-    })
-  }
+      })
+    }
 
 
   handleNewClick = () => {
@@ -50,7 +51,6 @@ class NewUser extends React.Component {
 
 
   handleNewSubmit = (event) => {
-    debugger
     event.preventDefault()
     this.handleNewClick()
     this.props.info.handleAddUser(this.state)
@@ -93,7 +93,7 @@ class NewUser extends React.Component {
       <br/>
       <label>
           Picture URL:
-        <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" placeholder="             optional" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
       </label>
       <br/>
       <br/>
@@ -111,8 +111,7 @@ class NewUser extends React.Component {
     <br/>
     <input type="submit" value="Save" />
     </form>
-    )
-  }
+  )}
 }
 
 export default NewUser
