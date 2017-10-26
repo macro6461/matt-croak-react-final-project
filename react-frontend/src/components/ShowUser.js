@@ -1,7 +1,7 @@
 import React from 'react'
 import User from './User'
 import EditUser from './EditUser'
-
+import { Card } from 'semantic-ui-react'
 
 
 class ShowUser extends React.Component {

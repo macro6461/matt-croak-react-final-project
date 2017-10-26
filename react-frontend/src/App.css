@@ -132,8 +132,10 @@ h2{
   margin-left: 1%;
 }
 
+
 .match-button{
   width: 10%;
+  margin: 2%;
 }
 
 .match-button:hover{
@@ -196,13 +198,19 @@ h2{
   text-align: center;
 }
 
-.user-card img{
+/*.user-card img{
   width: 50%;
-}
+}*/
 
 .user-card-name{
   margin: 0;
   padding: 0;
+}
+
+#cardImg {
+  margin-left: 12%;
+  height: 300px;
+  width: 225px;
 }
 
 .edit-div{
@@ -235,14 +243,16 @@ button{
   display: none;
 }
 .main {
-  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   left: 30%;
   top: 23%;
   margin: 2%;
   padding: 1%;
   padding-bottom: 4%;
-  width: 30%;
-  height: 500px;
+  width: 65%;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
@@ -252,6 +262,35 @@ button{
   animation-name: fade;
   animation-duration: 2s;
   animation-duration: 2s;
+}
+
+.parentDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+#childDivOne{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#childDivTwo{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.userList {
+  overflow: scroll;
+  width: 300px;
+  height: 450px;
 }
 
 @keyframes spin {
@@ -264,10 +303,7 @@ button{
   to {opacity: 1;}
 }
 
-.user-list{
-  float: left;
-  width: 20%;
-}
+
 
 .App {
   text-align: center;

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card, Image } from 'semantic-ui-react'
+
 
 const User = (props) => {
   const selectUser = () => {
@@ -8,15 +10,29 @@ const User = (props) => {
   //then it will automatically be invoked. We need it to be passed in
   //as a reference. NOT as a function. So we store it in a const function that we can pass in as a reference
   return (
-      <div className="user-card" onClick={selectUser}>
-        <br/>
-      <img src={props.user.picture_url ? props.user.picture_url : "http://i0.kym-cdn.com/photos/images/original/001/054/924/d3d.png" } alt="user_profile_pic"/>
-        <h2>{props.user.name}, {props.user.age}</h2>
-        <h3>{props.user.gender}</h3>
-        <h4>{props.user.city}, {props.user.state}</h4>
-        <h4>{props.user.bio}</h4>
-      <br/>
-      </div>
+    // <Card
+    // image={props.user.picture_url ? props.user.picture_url : "http://i0.kym-cdn.com/photos/images/original/001/054/924/d3d.png" }
+    // header={props.user.name}
+    // age={props.user.age}
+    // description={props.user.bio}
+    // city={props.user.city}
+    // state={props.user.state}
+    // extra={props.user.gender}
+    // />
+    <Card>
+    <Image id="cardImg" src={props.user.picture_url ? props.user.picture_url : "http://i0.kym-cdn.com/photos/images/original/001/054/924/d3d.png" }/>
+    <Card.Content>
+      <Card.Header>
+        {props.user.name}, {props.user.age}
+      </Card.Header>
+      <Card.Description>
+        {props.user.gender}<br></br>
+        {props.user.bio}<br></br>
+        {props.user.city}<br></br>
+        {props.user.state}
+      </Card.Description>
+    </Card.Content>
+  </Card>
   )
 }
 

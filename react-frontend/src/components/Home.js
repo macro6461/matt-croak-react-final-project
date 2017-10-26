@@ -4,6 +4,7 @@ import ShowUser from './ShowUser'
 import NewUser from './NewUser'
 import { Link, Route} from 'react-router-dom'
 import Nav from './Nav.js'
+import '../App.css'
 
 class Home extends Component {
   constructor(props){
@@ -32,28 +33,31 @@ class Home extends Component {
 
   render(){
     return(
-      <div>
-        <div className="search-bar">
-          <input
-            type="text"
-            onChange={this.filterOnChange}
-            placeholder={"gender preference..."}
-            value={this.state.searchTerm}
-          />
-        <button>Search</button>
-        </div>
-          <div className="user-list">
-            {this.props.users.length == 0
-              ? console.log('hola')
-              : this.state.users.length > 0
-                  ? <UserList handleClick={this.props.handleUserClick} users={this.state.users}/>
-                  : <UserList handleClick={this.props.handleUserClick} users={this.props.users}/>
-            }
+      <div className="parentDiv">
+        <div id="childDivOne">
+          <div className="search-bar">
+            <input
+              type="text"
+              onChange={this.filterOnChange}
+              placeholder={"gender preference..."}
+              value={this.state.searchTerm}
+            />
           </div>
+            <div className="user-list">
+              {this.props.users.length == 0
+                ? console.log('hola')
+                : this.state.users.length > 0
+                    ? <UserList handleClick={this.props.handleUserClick} users={this.state.users}/>
+                    : <UserList handleClick={this.props.handleUserClick} users={this.props.users}/>
+              }
+            </div>
+          </div>
+          <div id="childDivTwo">
           { this.props.users.length == 0
             ? null
             : <ShowUser handleMutualMatch={this.props.handleMutualMatch} mutualMatch={this.props.mutualMatch} selectedUser={this.props.selectedUser} currentUser={this.props.currentUser} users={this.props.users} handleChange={this.props.handleChange} changeEdit={this.props.changeStateOnNewEdit} changeStateOnSubmit={this.props.changeStateOnSubmit}/>
             }
+          </div>
     </div>
   )}
 }
