@@ -10,7 +10,20 @@ class SignIn extends React.Component{
           password: "",
       },
       user: "",
-      success: true
+      success: true,
+      signedIn: false
+    }
+  }
+
+  checkInputs = () => {
+    if (Object.values(this.state.currentUser).includes("")){
+      this.setState({
+        signedIn: false
+      })
+    } else {
+      this.setState({
+        signedIn: true
+      })
     }
   }
 
@@ -22,6 +35,7 @@ class SignIn extends React.Component{
         [key]: value
       }
     })
+    this.checkInputs()
   }
 
   submitCurrentUser = (event) => {
@@ -62,7 +76,10 @@ class SignIn extends React.Component{
         </label>
         <br/>
         <br/>
-        <button onClick={this.submitCurrentUser}>Sign In</button>
+      { this.state.signedIn === false
+        ? null
+        : <button onClick={this.submitCurrentUser}>Sign In</button>
+      }
       </form>
       </div>
     )

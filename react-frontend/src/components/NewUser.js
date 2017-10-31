@@ -16,7 +16,8 @@ class NewUser extends React.Component {
           password: ""
         },
       clicked: false,
-      submitted: true
+      submitted: true,
+      signedIn: false
     }
   }
 
@@ -40,6 +41,19 @@ class NewUser extends React.Component {
           }
         }
       })
+      this.checkInputs()
+    }
+
+    checkInputs = () => {
+      if (Object.values(this.state.user).includes("")){
+        this.setState({
+          signedIn: false
+        })
+      } else {
+        this.setState({
+          signedIn: true
+        })
+      }
     }
 
 
@@ -52,20 +66,12 @@ class NewUser extends React.Component {
 
   handleNewSubmit = (event) => {
     event.preventDefault()
-    // let values = this.state.values()
-    // if (values.includes("")){
-    //   this.setState({
-    //     submitted: false
-    //   })
-    // }
-    // if (!this.state.submitted){
-    //   console.log("false")
-    // } else {
       this.handleNewClick()
       this.props.info.handleAddUser(this.state)
   }
 
   render(){
+    debugger
     return(
       <form className="user-form" onSubmit={this.handleNewSubmit}>
         <h1>Create an Account!</h1>
@@ -102,7 +108,7 @@ class NewUser extends React.Component {
       <br/>
       <label>
           Picture URL:
-        <input type="text" placeholder="             optional" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
       </label>
       <br/>
       <br/>
@@ -118,7 +124,10 @@ class NewUser extends React.Component {
       </label>
       <br/>
     <br/>
-    <input type="submit" value="Save" />
+    { this.state.signedIn === false
+      ? null
+      : <input type="submit" value="Save" />
+    }
     </form>
   )}
 }
