@@ -16,8 +16,7 @@ class NewUser extends React.Component {
           password: ""
         },
       clicked: false,
-      submitted: true,
-      signedIn: false
+      submitted: true
     }
   }
 
@@ -41,20 +40,8 @@ class NewUser extends React.Component {
           }
         }
       })
-      this.checkInputs()
     }
 
-    checkInputs = () => {
-      if (Object.values(this.state.user).includes("")){
-        this.setState({
-          signedIn: false
-        })
-      } else {
-        this.setState({
-          signedIn: true
-        })
-      }
-    }
 
 
   handleNewClick = () => {
@@ -71,7 +58,7 @@ class NewUser extends React.Component {
   }
 
   render(){
-    debugger
+    console.log(Object.values(this.state.user))
     return(
       <form className="user-form" onSubmit={this.handleNewSubmit}>
         <h1>Create an Account!</h1>
@@ -79,55 +66,52 @@ class NewUser extends React.Component {
       <label>
         Name:
       </label>
-        <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="name" value={this.state.user.name} onChange={(event) => this.handleNewChange(event)} required/>
       <br/>
       <br/>
       <label>
         Age:
       </label>
-        <input type="text" name="age" value={this.state.user.age} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="age" value={this.state.user.age} onChange={(event) => this.handleNewChange(event)} required/>
         <br/>
         <br/>
       <label>
           Gender:
-        <input type="text" name="gender" value={this.state.user.gender} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="gender" value={this.state.user.gender} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
       <br/>
       <label>
           City:
-        <input type="text" name="city" value={this.state.user.city} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="city" value={this.state.user.city} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
       <br/>
       <label>
           State:
-        <input type="text" name="state" value={this.state.user.state} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="state" value={this.state.user.state} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
       <br/>
       <label>
           Picture URL:
-        <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="picture_url" value={this.state.user.picture_url} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
       <br/>
       <label>
           Bio:
-        <input type="text" name="bio" value={this.state.user.bio} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="bio" value={this.state.user.bio} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
       <br/>
       <label>
           Password:
-        <input type="text" name="password" value={this.state.user.password} onChange={(event) => this.handleNewChange(event)}/>
+        <input type="text" name="password" value={this.state.user.password} onChange={(event) => this.handleNewChange(event)} required/>
       </label>
       <br/>
     <br/>
-    { this.state.signedIn === false
-      ? null
-      : <input type="submit" value="Save" />
-    }
+     <input type="submit" value="Save" />
     </form>
   )}
 }

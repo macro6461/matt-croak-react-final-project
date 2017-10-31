@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route } from 'react-router-dom'
+
 
 class SignIn extends React.Component{
   constructor(props){
@@ -11,23 +11,11 @@ class SignIn extends React.Component{
       },
       user: "",
       success: true,
-      signedIn: false
-    }
-  }
-
-  checkInputs = () => {
-    if (Object.values(this.state.currentUser).includes("")){
-      this.setState({
-        signedIn: false
-      })
-    } else {
-      this.setState({
-        signedIn: true
-      })
     }
   }
 
   handleSignChange = (event, parameter) => {
+    console.log(Object.values(this.state.currentUser))
     let value = event.target.value
     let key = event.target.name
     this.setState({
@@ -35,7 +23,6 @@ class SignIn extends React.Component{
         [key]: value
       }
     })
-    this.checkInputs()
   }
 
   submitCurrentUser = (event) => {
@@ -67,19 +54,16 @@ class SignIn extends React.Component{
         <label>
           Name:
         </label>
-          <input type="text" name="name" value={this.state.currentUser.name} onChange={(event) => this.handleSignChange(event)}/>
+          <input type="text" name="name" value={this.state.currentUser.name} onChange={(event) => this.handleSignChange(event)} required/>
         <br/>
       <br/>
         <label>
           Password:
-          <input type="password" name="password" value={this.state.currentUser.password} onChange={(event) => this.handleSignChange(event)}/>
+          <input type="password" name="password" value={this.state.currentUser.password} onChange={(event) => this.handleSignChange(event)} required/>
         </label>
         <br/>
         <br/>
-      { this.state.signedIn === false
-        ? null
-        : <button onClick={this.submitCurrentUser}>Sign In</button>
-      }
+          <button onClick={this.submitCurrentUser}>Sign In</button>
       </form>
       </div>
     )
