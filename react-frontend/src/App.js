@@ -25,10 +25,12 @@ class App extends Component {
 
   componentDidMount(){
     debugger
-    var localUser = JSON.stringify(localStorage.getItem('currentUser'))
-    if (localStorage.name){
+    var localUnparsed = JSON.stringify(localStorage.getItem('currentUser'))
+    var localUser = JSON.parse(localUnparsed)
+    var newUser = JSON.parse(localUser)
+    if (localStorage.currentUser){
       this.setState({
-        currentUser: localUser
+        currentUser: newUser
       })
     }
     fetch('http://localhost:3000/users')
@@ -137,6 +139,7 @@ class App extends Component {
   }
 
   signOut = () => {
+    localStorage.clear()
     this.setState({
       currentUser: ""
     })
@@ -194,7 +197,7 @@ class App extends Component {
     debugger
     return (
       <div>
-        {localStorage.name === undefined
+        {localStorage.currentUser === undefined
           ? <SignInUp allUsers={this.state.users} selectedUser={this.state.selectedUser} currentUser={this.state.currentUser} setCurrentUser={this.signInCurrentUser} handleAddUser={this.changeStateOnNewSubmit}/>
           : <div>
               <Nav signOut={this.signOut} selectedUser={this.state.selectedUser} users={this.state.users} currentUser={this.state.currentUser}  handleChange={this.handleChange} changeEdit={this.changeStateOnNewEdit} changeStateOnSubmit={this.changeStateOnSubmit} handleUserClick={this.handleUserClick} handleUserDelete={this.handleUserDelete} handleAddUser={this.changeStateOnNewSubmit}/>

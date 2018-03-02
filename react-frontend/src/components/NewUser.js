@@ -56,9 +56,12 @@ class NewUser extends React.Component {
 
 
   handleNewSubmit = (event) => {
+    console.log(this.state)
     event.preventDefault()
       this.handleNewClick()
       this.props.info.handleAddUser(this.state)
+      localStorage.setItem('currentUser', JSON.stringify(this.state.user))
+      
   }
 
   render(){
