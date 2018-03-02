@@ -18,6 +18,7 @@ class SignInUp extends React.Component{
 
         <Link className="sign-in-link" to="/signin">Sign In</Link>
         <Link className="sign-up-link" to="/signup">Sign Up</Link>
+        <img className="home-fire" src={require('../5Mz4.gif')} alt="fire-gif"/>
         <Route exact path='/signin' render={(props) => (
           <SignIn info={this.props}/>
         )}/>

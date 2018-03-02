@@ -23,6 +23,12 @@ body{
   text-shadow: 0.5px 0.5px black;
 }
 
+.home-fire{
+  width: 20%;
+  display: block;
+  margin: auto;
+}
+
 .user-not-found{
   color: red;
   text-shadow: 2px 2px black;

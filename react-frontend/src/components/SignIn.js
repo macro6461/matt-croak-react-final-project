@@ -28,11 +28,14 @@ class SignIn extends React.Component{
   submitCurrentUser = (event) => {
     event.preventDefault()
     let thisUser = this.props.info.allUsers.find((user) => {
+      debugger
       return user.name === this.state.currentUser.name && user.password === this.state.currentUser.password
     })
     if (thisUser){
+      localStorage.setItem('currentUser', JSON.stringify(thisUser))
+      var localUser = JSON.parse(localStorage.getItem('currentUser'));
       this.setState({
-        user: thisUser,
+        user: localUser,
       }, () => this.props.info.setCurrentUser(this.state.user))
     } else {
       this.setState({
