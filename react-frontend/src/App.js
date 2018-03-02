@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    debugger
+
     var localUnparsed = JSON.stringify(localStorage.getItem('currentUser'))
     var localUser = JSON.parse(localUnparsed)
     var newUser = JSON.parse(localUser)
@@ -55,7 +55,7 @@ class App extends Component {
 
 
   handleUserClick = (element) => {
-    debugger
+
     let selectedUser = this.state.users.find((user) =>{
       return (user.id === element.id)
     })
@@ -90,7 +90,7 @@ class App extends Component {
   }
 
   changeStateOnNewEdit = (newEditData) => {
-    debugger
+
     let editedUser = newEditData.user
     let newState = newEditData.user.state
     let newCity = newEditData.user.city
@@ -112,7 +112,7 @@ class App extends Component {
   }
 
   removeUser = (editedUser) => {
-    debugger
+
     let newUsers = this.state.users.filter((user) => {
       return user.id != editedUser.id
     })
@@ -122,7 +122,7 @@ class App extends Component {
   }
 
   updateEditedState = (json) => {
-    debugger
+
     this.setState({
       users: [json, ...this.state.users],
       currentUser: json,
@@ -132,7 +132,7 @@ class App extends Component {
   }
 
   deleteUserOnClick = () => {
-    debugger
+
     this.setState({
       currentUser: ""
     })
@@ -146,7 +146,7 @@ class App extends Component {
   }
 
   changeStateOnNewSubmit = (newUserData) => {
-    debugger
+
     let newState = newUserData.user.state
     let newCity = newUserData.user.city
     fetch('http://localhost:3000/users', {
@@ -172,7 +172,7 @@ class App extends Component {
 
     changeStateOnSubmit = (editData) => {
       this.setState((prevState) => {
-        debugger
+
          return {users: prevState.users.map((user) => {
           if (user === editData.selectedUser) {
             return editData.user
@@ -187,14 +187,14 @@ class App extends Component {
   }
 
   handleMutualMatch = (data) => {
-    debugger
+
     this.setState({
       mutualMatch: data
     })
   }
 
   render() {
-    debugger
+
     return (
       <div>
         {localStorage.currentUser === undefined

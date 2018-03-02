@@ -57,20 +57,20 @@ class ShowUser extends React.Component {
 
 
   checkMatches = (json) => {
-    debugger
+     
     let matcher = this.props.users.find((user) => {
-      debugger
+       
       return parseInt(user.id) === parseInt(json.matcher_id)
     })
     let matchee = this.props.users.find((user) => {
-      debugger
+       
       return parseInt(user.id) === parseInt(json.matchee_id)
     })
     let finalMatch = this.state.matches.find((match) => {
       return parseInt(match.matcher_id) === matchee.id && parseInt(match.matchee_id) === matcher.id
     })
     if (finalMatch){
-      debugger
+       
       this.props.handleMutualMatch(finalMatch)
     } else {
       console.log("invalid")

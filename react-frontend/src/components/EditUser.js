@@ -27,7 +27,7 @@ class EditUser extends React.Component {
   }
 
   handleDelete = (event) => {
-    debugger
+     
     this.props.handleUserDelete(this.state)
   }
 

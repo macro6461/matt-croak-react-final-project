@@ -14,12 +14,12 @@ class SignInUp extends React.Component{
   }
 
   componentDidMount = () => {
-    debugger
+     
     this.changeFireState()
   }
 
   changeFireState = () => {
-    debugger
+
     if (window.location.href.length <= 22){
       this.setState({
         fire: true
