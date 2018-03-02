@@ -25,6 +25,10 @@ class SignIn extends React.Component{
     })
   }
 
+  componentDidMount = () => {
+    this.props.changeFire()
+  }
+
   submitCurrentUser = (event) => {
     event.preventDefault()
     let thisUser = this.props.info.allUsers.find((user) => {

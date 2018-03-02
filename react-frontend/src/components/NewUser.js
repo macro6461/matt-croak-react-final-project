@@ -20,6 +20,10 @@ class NewUser extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    this.props.changeFire()
+  }
+
   handleNewChange = (event, parameter) => {
     let value = event.target.value
     let key = event.target.name
